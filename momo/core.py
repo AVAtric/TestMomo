@@ -6,7 +6,7 @@ from typing import List, Tuple
 class GameOfLife:
     """Conway's Game of Life implementation."""
 
-    def __init__(self, width: int = 50, height: int = 25, seed: int | None = None):
+    def __init__(self, width: int = 50, height: int = 25, seed: int | None = None, randomize: bool = False):
         """
         Initialize the Game of Life.
 
@@ -18,8 +18,11 @@ class GameOfLife:
         self.width = width
         self.height = height
         self.generation = 0
-        self.grid = [[False for _ in range(width)] for _ in range(height)]
-        self._randomize(seed)
+        if randomize:
+            self._randomize(seed)
+        else:
+            # Ensure grid is empty
+            self.grid = [[False for _ in range(width)] for _ in range(height)]
 
     def _randomize(self, seed: int | None = None):
         """Randomize the grid with a given seed for reproducibility."""

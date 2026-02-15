@@ -56,7 +56,7 @@ class TestGameOfLife:
 
         # Cell at (0, 0) should see (0, 4) and (4, 0) as neighbors due to wrap
         neighbors = game._get_neighbors(0, 0)
-        assert neighbors == 3
+        assert neighbors == 2
 
     def test_underpopulation(self):
         """Test underpopulation rule."""

@@ -85,7 +85,9 @@ class TerminalInterface:
         display.hide_cursor()
         try:
             while self.running:
-                display.render(self.game.grid, self.width, self.height)
+                # Render grid with generation info
+                display.render_with_info(self.game.grid, self.width, self.height,
+                                        self.generation, self.paused)
                 if not self.paused:
                     self.step()
                 if self.speed:
@@ -147,10 +149,8 @@ def main():
         pass
 
     try:
-        interface.run()
-
-        # Handle keyboard input while running
         while interface.running:
+            # Handle keyboard input
             if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
                 char = sys.stdin.read(1)
                 if char == ' ':
